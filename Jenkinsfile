@@ -15,7 +15,7 @@ pipeline{
     stage('Cypress Tests') {
       steps {
         sh 'pnpm install'
-        sh 'cypress install'
+        sh 'pnpm cypress install'
         sh 'pnpm cy:run'
       }
     }
