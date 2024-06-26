@@ -5,3 +5,4 @@ repos:
       - id: run-cypress-e2e
         name: run cypress e2e tests
         entry: echo "E2e tests are running"
+        language: bash
