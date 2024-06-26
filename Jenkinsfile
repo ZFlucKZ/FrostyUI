@@ -3,7 +3,7 @@ pipeline{
 
   tools {
     dockerTool 'docker-latest'
-    node 'node21.7.3'
+    nodejs 'node21.7.3'
   }
 
   environment {
