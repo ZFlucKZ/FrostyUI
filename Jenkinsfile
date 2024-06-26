@@ -1,5 +1,13 @@
 pipeline{
-  agent any
+  agent {
+    docker {
+      image 'cypress/base:20.14.0'
+    }
+  }
+
+  options{
+    ansiColor('xterm')
+  }
 
   tools {
     dockerTool 'docker-latest'
