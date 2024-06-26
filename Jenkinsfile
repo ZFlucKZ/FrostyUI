@@ -5,10 +5,6 @@ pipeline{
     }
   }
 
-  options{
-    ansiColor('xterm')
-  }
-
   tools {
     dockerTool 'docker-latest'
     nodejs 'node21.7.3'
