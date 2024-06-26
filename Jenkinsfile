@@ -12,16 +12,10 @@ pipeline{
   }
 
   stages {
-    stage('Setup cypress'){
-      steps {
-        sh 'cypress install'
-      }
-
-    }
-
     stage('Cypress Tests') {
       steps {
         sh 'pnpm install'
+        sh 'cypress install'
         sh 'pnpm cy:run'
       }
     }
