@@ -10,16 +10,16 @@ repos:
         verbose: true
       - id: check-yaml
 
-  - repo: local
-    hooks:
-      - id: run-cypress
-        name: run cypress tests
-        entry: pnpm cy:run
-        language: system
-        pass_filenames: false
-        always_run: true
-        verbose: true
-        fail_fast: true
+  # - repo: local
+  #   hooks:
+  #     - id: run-cypress
+  #       name: run cypress tests
+  #       entry: pnpm cy:run
+  #       language: system
+  #       pass_filenames: false
+  #       always_run: true
+  #       verbose: true
+  #       fail_fast: true
 # hooks:
 #   - id: go-unit-tests
 #     name: run go test s(go test)

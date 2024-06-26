@@ -3,7 +3,7 @@ import { defineConfig } from "cypress";
 export default defineConfig({
   retries: 3,
   e2e: {
-    baseUrl: "http://172.17.32.1:3001",
+    baseUrl: "http://192.168.192.3/",
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

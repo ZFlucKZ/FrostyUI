@@ -13,8 +13,6 @@ services:
       - sonarqube_logs:/opt/sonarqube/logs
     ports:
       - '9001:9000'
-    networks:
-      - jenkins-sonar
 
   sonar_db:
     image: postgres:16.2
@@ -27,8 +25,6 @@ services:
     volumes:
       - sonar_db:/var/lib/postgresql
       - sonar_db_data:/var/lib/postgresql/data
-    networks:
-      - jenkins-sonar
 
   jenkins:
     image: jenkins/jenkins:lts
@@ -39,8 +35,6 @@ services:
     volumes:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - jenkins-sonar
 
   app:
     platform: 'linux/amd64'
@@ -72,8 +66,6 @@ services:
   #     POSTGRES_PASSWORD: mypassword
   #   volumes:
   #     - ./data/pg:/var/lib/postgresql/data
-networks:
-  jenkins-sonar:
 
 volumes:
   sonarqube_data:
