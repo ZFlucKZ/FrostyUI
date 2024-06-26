@@ -1,21 +1,64 @@
 services:
+  sonarqube:
+    image: sonarqube:community
+    depends_on:
+      - sonar_db
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://sonar_db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    ports:
+      - '9001:9000'
+    networks:
+      - jenkins-sonar
+
+  sonar_db:
+    image: postgres:16.2
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonar
+    ports:
+      - '5434:5432'
+    volumes:
+      - sonar_db:/var/lib/postgresql
+      - sonar_db_data:/var/lib/postgresql/data
+    networks:
+      - jenkins-sonar
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: root
+    ports:
+      - '8081:8080'
+      - '50001:50000'
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins-sonar
+
   app:
     platform: 'linux/amd64'
     build:
       context: .
       dockerfile: Dockerfile
       network: host
-      args:
-        # NEXT_PUBLIC_CLIENTVAR: 'clientvar'
-        # DATABASE_URL: 'postgresql://myapp:mypassword@localhost:9111/leave-management?schema=public'
-        # NEXTAUTH_SECRET: 'p0I0oiZgFGhha0eQKzumB5Awyeqe4hQ2jmaQ4t/HuMk='
-        # NEXTAUTH_URL: 'http://localhost:3000'
-        NEXTAPP_URL: 'http://localhost:3000'
+      # args:
+      # NEXT_PUBLIC_CLIENTVAR: 'clientvar'
+      # DATABASE_URL: 'postgresql://myapp:mypassword@localhost:9111/leave-management?schema=public'
+      # NEXTAUTH_SECRET: 'p0I0oiZgFGhha0eQKzumB5Awyeqe4hQ2jmaQ4t/HuMk='
+      # NEXTAUTH_URL: 'http://localhost:3001'
+      # NEXTAPP_URL: 'http://localhost:3001'
     working_dir: /app
     # volumes:
     #   - ./data/uploads:/app/public/uploads
     ports:
-      - '3000:3000'
+      - '3001:3001'
     # environment:
     #   DATABASE_URL: 'postgresql://myapp:mypassword@db:5432/leave-management?schema=public'
   #   depends_on:
@@ -29,3 +72,13 @@ services:
   #     POSTGRES_PASSWORD: mypassword
   #   volumes:
   #     - ./data/pg:/var/lib/postgresql/data
+networks:
+  jenkins-sonar:
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  sonar_db:
+  sonar_db_data:
+  jenkins_home:
