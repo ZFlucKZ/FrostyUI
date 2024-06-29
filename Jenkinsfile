@@ -27,7 +27,7 @@ pipeline{
       }
 
       steps {
-        withSonarQubeEnv('sonar4.7') {
+        withSonarQubeEnv('sonar-frostyui') {
           sh '''
             ${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=frosty-ui \
