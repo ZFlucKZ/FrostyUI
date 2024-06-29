@@ -35,10 +35,10 @@ pipeline{
             -Dsonar.sourceEncoding=UTF-8 \
             -Dsonar.scm.disabled=true
           '''
+        }
 
-          timeout(time: 5, unit: 'MINUTES'){
-            waitForQualityGate abortPipeline: true
-          }
+        timeout(time: 5, unit: 'MINUTES'){
+          waitForQualityGate abortPipeline: true
         }
       }
     }
