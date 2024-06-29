@@ -29,7 +29,11 @@ pipeline{
       steps {
         withSonarQubeEnv('sonar4.7') {
           sh '''
-            ${scannerHome}/bin/sonar-scanner
+            ${scannerHome}/bin/sonar-scanner \
+            -Dsonar.projectKey=frosty-ui \
+            -Dsonar.sources=. \
+            -Dsonar.sourceEncoding=UTF-8 \
+            -Dsonar.scm.disabled=true
           '''
         }
       }
