@@ -43,7 +43,7 @@ pipeline{
       }
     }
 
-    stage('Build DOcker Image'){
+    stage('Build Docker Image'){
       steps {
         script {
           dockerImage = docker.build(registry + ":V$BUILD_NUMBER")
