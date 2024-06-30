@@ -67,9 +67,9 @@ pipeline{
       }
     }
 
-    stage('Deploy to EC2'){
+    stage('Deploy to Amplify'){
       steps {
-        sh "Deploying to EC2"
+        sh "echo Deploying to Amplify"
       }
     }
   }
