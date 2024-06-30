@@ -33,7 +33,7 @@ pipeline{
             -Dsonar.projectKey=frosty-ui \
             -Dsonar.sources=. \
             -Dsonar.sourceEncoding=UTF-8 \
-            -Dsonar.scm.disabled=true
+            -Dsonar.scm.disabled=true \
             -Dsonar.javascript.file.suffixes=.js,.jsx,.ts,.tsx
           '''
         }
