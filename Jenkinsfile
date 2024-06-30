@@ -42,7 +42,35 @@ pipeline{
         }
       }
     }
+
+    stage('Build DOcker Image'){
+      steps {
+        script {
+          dockerImage = docker.build(registry + ":V$BUILD_NUMBER")
+        }
+      }
+    }
+
+    stage('Push Docker Image'){
+      steps {
+        script {
+          docker.withRegistry('', registryCredential) {
+            dockerImage.push("V$BUILD_NUMBER")
+          }
+        }
+      }
+    }
+
+    stage('Remove Unused docker image') {
+      steps {
+        sh "docker rmi $registry:V$BUILD_NUMBER"
+      }
+    }
+
+    stage('Deploy to EC2'){
+      steps {
+        sh "Deploying to EC2"
+      }
+    }
   }
-
-
 }
