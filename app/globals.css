@@ -2,32 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 200 100% 95%; /* Light pastel blue */
+    --foreground: 220 50% 20%; /* Dark pastel blue */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 220 40% 20%; /* Dark grey */
+
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 220 40% 20%; /* Dark grey */
+
+    --primary: 340 100% 85%; /* Light pastel pink */
+    --primary-foreground: 220 100% 20%; /* Very dark blue */
+
+    --secondary: 170 100% 80%; /* Light pastel green */
+    --secondary-foreground: 220 100% 20%; /* Very dark blue */
+
+    --muted: 200 20% 95%; /* Light pastel blue */
+    --muted-foreground: 220 20% 30%; /* Medium grey */
+
+    --accent: 0 0% 90%; /* Light grey */
+    --accent-foreground: 220 100% 20%; /* Light pastel blue */
+
+    --destructive: 0 100% 75%; /* Light pastel red */
+    --destructive-foreground: 220 100% 20%; /* Very dark blue */
+
+    --border: 200 30% 85%; /* Light grey-blue */
+    --input: 200 30% 85%; /* Light grey-blue */
+    --ring: 220 40% 20%; /* Dark grey */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 40% 9%; /* Dark pastel blue */
+    --foreground: 200 100% 95%; /* Light pastel blue */
+
+    --card: 220 40% 20%; /* Dark grey */
+    --card-foreground: 200 100% 95%; /* Light pastel blue */
+
+    --popover: 220 40% 20%; /* Dark grey */
+    --popover-foreground: 200 100% 95%; /* Light pastel blue */
+
+    --primary: 340 100% 85%; /* Light pastel pink */
+    --primary-foreground: 220 100% 20%; /* Very dark blue */
+
+    --secondary: 220 40% 20%; /* Dark grey */
+    --secondary-foreground: 170 100% 80%; /* Light pastel green */
+
+    --muted: 220 40% 20%; /* Dark grey */
+    --muted-foreground: 200 100% 85%; /* Light pastel blue */
+
+    --accent: 220 40% 20%; /* Dark grey */
+    --accent-foreground: 200 100% 95%; /* Light pastel blue */
+
+    --destructive: 0 100% 60%; /* Medium pastel red */
+    --destructive-foreground: 200 100% 95%; /* Light pastel blue */
+
+    --border: 220 40% 20%; /* Dark grey */
+    --input: 220 40% 20%; /* Dark grey */
+    --ring: 220 40% 30%; /* Medium dark grey */
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
